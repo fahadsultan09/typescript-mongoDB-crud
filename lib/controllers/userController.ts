@@ -56,7 +56,16 @@ export class UserController {
             insufficientParameters(res);
         }
     }
+    public getAllUsers(req: Request, res: Response) {
+        this.user_service.getAllUser({}, (err: any, user_data: IUser) => {
+            if (err) {
+                mongoError(err, res);
+            } else {
+                successResponse('get user successfull', user_data, res);
+            }
+        });
 
+    }
     public update_user(req: Request, res: Response) {
         if (req.params.id &&
             req.body.name || req.body.name.first_name || req.body.name.middle_name || req.body.name.last_name ||

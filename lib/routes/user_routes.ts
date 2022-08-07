@@ -11,6 +11,9 @@ export class UserRoutes {
             this.user_controller.create_user(req, res);
         });
 
+        app.get('/api/user', (req: Request, res: Response) => {
+            this.user_controller.getAllUsers(req, res);
+        });
         app.get('/api/user/:id', (req: Request, res: Response) => {
             this.user_controller.get_user(req, res);
         });
