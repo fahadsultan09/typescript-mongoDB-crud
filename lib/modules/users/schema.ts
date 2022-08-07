@@ -6,13 +6,13 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     name: {
         type: {
-            first_name: String,
-            middle_name: String,
-            last_name: String
+            firstName: String,
+            middleName: String,
+            lastName: String
         }
     },
     email: String,
-    phone_number: String,
+    phoneNumber: String,
     gender: String,
     is_deleted: {
         type: Boolean,

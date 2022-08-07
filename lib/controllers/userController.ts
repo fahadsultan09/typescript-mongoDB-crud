@@ -10,18 +10,18 @@ export class UserController {
 
     public create_user(req: Request, res: Response) {
         // this check whether all the filds were send through the erquest or not
-        if (req.body.name && req.body.name.first_name && req.body.name.middle_name && req.body.name.last_name &&
+        if (req.body.name && req.body.name.firstName && req.body.name.middleName && req.body.name.lastName &&
             req.body.email &&
-            req.body.phone_number &&
+            req.body.phoneNumber &&
             req.body.gender) {
             const user_params: IUser = {
                 name: {
-                    first_name: req.body.name.first_name,
-                    middle_name: req.body.name.middle_name,
-                    last_name: req.body.name.last_name
+                    firstName: req.body.name.firstName,
+                    middleName: req.body.name.middleName,
+                    lastName: req.body.name.lastName
                 },
                 email: req.body.email,
-                phone_number: req.body.phone_number,
+                phoneNumber: req.body.phoneNumber,
                 gender: req.body.gender,
                 modification_notes: [{
                     modified_on: new Date(Date.now()),
@@ -49,7 +49,7 @@ export class UserController {
                 if (err) {
                     mongoError(err, res);
                 } else {
-                    successResponse('get user successfull', user_data, res);
+                    successResponse('Records successfully fetched', user_data, res);
                 }
             });
         } else {
@@ -61,16 +61,16 @@ export class UserController {
             if (err) {
                 mongoError(err, res);
             } else {
-                successResponse('get user successfull', user_data, res);
+                successResponse('Records successfully fetched', user_data, res);
             }
         });
 
     }
     public update_user(req: Request, res: Response) {
         if (req.params.id &&
-            req.body.name || req.body.name.first_name || req.body.name.middle_name || req.body.name.last_name ||
+            req.body.name || req.body.name.firstName || req.body.name.middleName || req.body.name.lastName ||
             req.body.email ||
-            req.body.phone_number ||
+            req.body.phoneNumber ||
             req.body.gender) {
             const user_filter = { _id: req.params.id };
             this.user_service.filterUser(user_filter, (err: any, user_data: IUser) => {
@@ -85,12 +85,12 @@ export class UserController {
                     const user_params: IUser = {
                         _id: req.params.id,
                         name: req.body.name ? {
-                            first_name: req.body.name.first_name ? req.body.name.first_name : user_data.name.first_name,
-                            middle_name: req.body.name.first_name ? req.body.name.middle_name : user_data.name.middle_name,
-                            last_name: req.body.name.first_name ? req.body.name.last_name : user_data.name.last_name
+                            firstName: req.body.name.firstName ? req.body.name.firstName : user_data.name.firstName,
+                            middleName: req.body.name.firstName ? req.body.name.middleName : user_data.name.middleName,
+                            lastName: req.body.name.firstName ? req.body.name.lastName : user_data.name.lastName
                         } : user_data.name,
                         email: req.body.email ? req.body.email : user_data.email,
-                        phone_number: req.body.phone_number ? req.body.phone_number : user_data.phone_number,
+                        phoneNumber: req.body.phoneNumber ? req.body.phoneNumber : user_data.phoneNumber,
                         gender: req.body.gender ? req.body.gender : user_data.gender,
                         is_deleted: req.body.is_deleted ? req.body.is_deleted : user_data.is_deleted,
                         modification_notes: user_data.modification_notes
@@ -99,11 +99,11 @@ export class UserController {
                         if (err) {
                             mongoError(err, res);
                         } else {
-                            successResponse('update user successfull', null, res);
+                            successResponse('User updated successfully', null, res);
                         }
                     });
                 } else {
-                    failureResponse('invalid user', null, res);
+                    failureResponse('Invalid user', null, res);
                 }
             });
         } else {
@@ -119,7 +119,7 @@ export class UserController {
                 } else if (delete_details.deletedCount !== 0) {
                     successResponse('delete user successfull', null, res);
                 } else {
-                    failureResponse('invalid user', null, res);
+                    failureResponse('Invalid user', null, res);
                 }
             });
         } else {

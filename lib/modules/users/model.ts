@@ -4,12 +4,12 @@ import { ModificationNote } from "../common/model";
 export interface IUser {
     _id?: String;
     name: {
-        first_name: String;
-        middle_name: String;
-        last_name: String;
+        firstName: String;
+        middleName: String;
+        lastName: String;
     };
     email: String;
-    phone_number: String;
+    phoneNumber: String;
     gender: String;
     is_deleted?: Boolean;
     modification_notes: ModificationNote[]
