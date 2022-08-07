@@ -1,6 +1,8 @@
 
 import app from './config/app'
-const PORT = 3000
+import env from './environments'
+
+const PORT = env.getPort()
 app.listen(PORT, () => {
     console.log("EXPRESS RUNNING <====>", PORT)
 })

@@ -1,21 +1,17 @@
-
-enum Environments {
-    local_environment = 'local',
-    dev_environment = 'dev',
-    prod_environment = 'prod',
-    qa_environment = 'qa'
-}
-
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Environments;
+(function (Environments) {
+    Environments["local_environment"] = "local";
+    Environments["dev_environment"] = "dev";
+    Environments["prod_environment"] = "prod";
+    Environments["qa_environment"] = "qa";
+})(Environments || (Environments = {}));
 class Environment {
-    private env: String;
-
-    constructor(env: String) {
-        this.env = env
+    constructor(env) {
+        this.env = env;
     }
-
-    getPort(): Number {
-
+    getPort() {
         switch (this.env) {
             case Environments.prod_environment:
                 return 8081;
@@ -29,9 +25,7 @@ class Environment {
                 return 3000;
         }
     }
-
-    getDBName(): String {
-
+    getDBName() {
         switch (this.env) {
             case Environments.prod_environment:
                 return "db_test_project_prod";
@@ -46,5 +40,4 @@ class Environment {
         }
     }
 }
-
-export default new Environment(Environments.local_environment);
+exports.default = new Environment(Environments.local_environment);
