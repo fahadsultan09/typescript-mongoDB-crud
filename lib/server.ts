@@ -4,5 +4,5 @@ import env from './environments'
 
 const PORT = env.getPort()
 app.listen(PORT, () => {
-    console.log("EXPRESS RUNNING <====>", PORT)
+    console.log(`************** Project started running on port ${PORT} **************`)
 })
